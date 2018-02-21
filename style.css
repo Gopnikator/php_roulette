@@ -1,0 +1,16 @@
+.form-inline {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.register{
+    text-align: right;
+    margin-top: 3%;
+    margin-right: 5%;
+}
+
+.titre-index{
+    text-align: center;
+    font-weight: bold;
+}
