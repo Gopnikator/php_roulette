@@ -17,8 +17,7 @@ session_start(); #session >
              
        
 <?php
-        $argent=$_SESSION['argent'];
-        echo $argent . " €";
+        echo $_SESSION['argent'] . " €";
 
         function parite ($parite){
             // selection d'un num random entre 1 et 36
@@ -52,10 +51,10 @@ session_start(); #session >
         }         
         
     // Si le bouton jouer est pressé alors
-    if(isset($_POST['bouton'])){
-        $miseMax = $argent;
+    if(isset($_POST['button'])){
+        $miseMax = $_SESSION['argent'];
         $sommeMisee = $_POST['mise'];
-        $choixNb = $_POST['nombre']
+        $choixNb = $_POST['nombre'];
             if($_POST['choix']=='pair'){
                 $parite=0;
             }else if($_POST['choix']=='impair'){
@@ -69,11 +68,11 @@ session_start(); #session >
         if(isset($_POST['Parite'])){
             if (parite($parite)==1){
                 echo "<br> Vous avez gagné ! <br>";
-                $argent = $argent + $sommeMisee;
+                $argent = $_SESSION['argent'] + $sommeMisee;
             }
             else{
                 echo "<br> Vous avez perdu ! <br>";
-                $argent = $argent - $sommeMisee;
+                $argent = $_SESSION['argent'] - $sommeMisee;
             }
         }else if(isset($_POST['nombre'])){
             if (nbr ($nombre)==1){
@@ -91,9 +90,9 @@ session_start(); #session >
             echo "<br> VOUS ETES A SEC !!! Sale pauvre :O <br>";
         }
     }
-}          
+          
 ?>    
-  <p>Bonjour mon gros <?php echo $_SESSION['nom'] ?></p>      
+  <p>Bonjour mon gros <?php echo $_SESSION['nom'] ?>. Tu as <?php echo $_SESSION['argent']?> € de thune;</p> 
     <form action="/php_roulette/roulette.php" method="post">
     <div>
         <input type="text" name="mise" placeholder="Votre mise" min=1 max = 500/>
@@ -108,14 +107,14 @@ session_start(); #session >
        
     <div>
         <label for="miseParité ">Misez sur la parité</label>  <br> 
-        <label>Pair</label> <input type="radio" name= "choix" id="pair" /> 
-        <label>Impair</label> <input type="radio" name="choix" id="impair" /> 
+        <label>Pair</label> <input type="radio" name= "choix" id="pair" value="pair"/> 
+        <label>Impair</label> <input type="radio" name="choix" id="impair" value="impair"/> 
     </div>
         
 
     <div class="buttonJouer">
         <input type="hidden" value="play" name="bouton">
-        <input type="submit"  value="Let's begin!" name = "jouer">
+        <input type="submit"  value="Let's begin!" name = "button">
     </div>    
         
     </form>  
