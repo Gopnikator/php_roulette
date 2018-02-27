@@ -63,7 +63,6 @@ session_start(); #session >
             }else{
                 echo "ERREUR";
             }
-            
     }
     
     if($sommeMisee<$miseMax && $sommeMisee>0){
