@@ -68,8 +68,8 @@ if(isset($_POST['send'])){
         //echo...
     ?>
         
-<form action="/php_roulette/connexion.php" method="post">
-    <div class="form-inline">
+<form class="center" action="/php_roulette/connexion.php" method="post">
+    <div class="aligner">
         <label class="sr-only" for="inlineFormInputName2"></label>
         <input type="text" class="form-control mb-2 mr-sm-2" id="exampleInputEmail1" aria-describedby="emailHelp" name="nom" placeholder="nom"/>
         <label for="exampleInputPassword2"></label>
@@ -78,7 +78,7 @@ if(isset($_POST['send'])){
         </div>
     </div>
     <br>
-    <div>
+    <div class="center">
         <button class="btn btn-dark mb-2" type="reset">Effacer</button>
         <button class="btn btn-dark mb-2" type="submit" name = "send">Commencer</button>
     </div>
