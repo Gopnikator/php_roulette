@@ -152,7 +152,7 @@ if(isset($_POST['send'])){
                 if($_POST['mdp']==$mdp){
             echo "lol3";
                     $_SESSION['nom']=$_POST['nom'];
-                    header("Location: /TP roulette/roulette.php");
+                    header("Location: /php_roulette/roulette.php");
                     } else {
                         $error = "mdp NOK";} 
                 } else {

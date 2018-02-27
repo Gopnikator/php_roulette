@@ -11,7 +11,7 @@
         
     <h1 class="titre-index">Inscrivez-vous au jeu de la roulette</h1>
     
-        <form action="/TP roulette/connexion.php" method="post">
+        <form action="/php_roulette/connexion.php" method="post">
         <div>
            <input type="text" id="nom" placeholder="nom"/>
         </div>

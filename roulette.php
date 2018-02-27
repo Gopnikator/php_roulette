@@ -133,7 +133,7 @@ if(isset($_POST['bouton'])){
 }          
 ?>    
         
-    <form action="/TP roulette/roulette.php" method="post">
+    <form action="/php_roulette/roulette.php" method="post">
     <div>
         <input type="text" name="mise" placeholder="Votre mise" min=1 max = 500/>
     </div>
@@ -159,7 +159,7 @@ if(isset($_POST['bouton'])){
         
     </form>  
         
-    <a href="/TP roulette/connexion.php?getdeco">Se déconnecter</a>
+    <a href="/php_roulette/connexion.php?getdeco">Se déconnecter</a>
     
         
         
