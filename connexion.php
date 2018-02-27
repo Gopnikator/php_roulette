@@ -13,7 +13,7 @@ if(isset($_GET['getdeco'])){
 
 $mdp = "123";
 $nom = "Test";
-$argent = 500;
+$_SESSION['argent'] = 500;
 
 #traite le formulaire de connexion
 if(isset($_POST['send'])){
@@ -26,7 +26,6 @@ if(isset($_POST['send'])){
                 if($_POST['mdp']==$mdp){
             echo "lol3";
                     $_SESSION['nom']=$_POST['nom'];
-                    $_SESSION['argent']=$argent;
                     header("Location: /php_roulette/roulette.php");
                     } else {
                         $error = "mdp NOK";} 

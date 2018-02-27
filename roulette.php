@@ -1,4 +1,6 @@
-// mettre session au départ<?php session_start(); #session >
+// mettre session au départ<?php 
+session_start(); #session >
+?>
 
 <DOCTYPE html>
 <html>
@@ -17,49 +19,21 @@
 <?php
         $argent=$_SESSION['argent'];
         echo $argent . " €";
-                
-        function tourRouletteParitePair ($parite){
+
+        function parite ($parite){
             // selection d'un num random entre 1 et 36
-            $num = rand(1,36);
-            $pairImpair = "";
-            //selection si pair ou impair
-            if($num%2!=0){
-                $pairImpair = "impair";
-            }
-            else{
-                $pairImpair = "pair";
-            }       
-            if ($pairImpair == $parite){
-                return false;
-            }
-            else{
+            $num=rand(1.36);
+            // comparaison avec la parité choisi
+            if($num%2==$parite){
                 return true;
-            }
-        }
-        
-        function tourRoulettePariteImpair ($parite){
-            // selection d'un num random entre 1 et 36
-            $num = rand(1,36);
-            $pairImpair = "";
-            //selection si pair ou impair
-            if($num%2!=0){
-                $pairImpair = "impair";
-            }
-            else{
-                $pairImpair = "pair";
-            }       
-            if ($pairImpair == $parite){
-                return true;
-            }
-            else{
+            }else{
                 return false;
             }
         }
         
-        function tourRouletteNombre ($nombre){
+        function nbr ($nombre){
              // selection d'un num random entre 1 et 36
             $num = rand(1,36);
-            $nombre = 0;
             // comparaison avec le nombre choisi  
             if($nombre==$num){
                 return true;
@@ -72,64 +46,52 @@
         function perdrePartie ($argent){
             if ($argent == 0){
                 return true;
-            }
-            else{
+            }else{
                 return false;
             }
         }         
         
-// Si le bouton jouer est pressé alors
-if(isset($_POST['bouton'])){
-    
+    // Si le bouton jouer est pressé alors
+    if(isset($_POST['bouton'])){
         $miseMax = $argent;
-        $guess = $_POST['nombre'];
-        $bool = 0;
-        $bool2 = 0;
         $sommeMisee = $_POST['mise'];
-        //$choixParite = $_POST['choix'];
-        //$choixNb = $_POST['nombre']
-    
-    if(isset($_POST['ParitePair'])){
-        $bool = tourRouletteParitePair($choix);
-        if ($bool==1){
-            echo "<br> Vous avez gagné ! <br>";
-            $argent = $argent - $sommeMisee + ($sommeMisee * 2);       
-        }
-        else{
-            echo "<br> Vous avez perdu ! <br>";
-            $argent = $argent - $sommeMisee;
-        }
-    }
-    if(isset($_POST['PariteImpair'])){
-        $bool = tourRoulettePariteImpair($choix);
-        if ($bool==1){
-            echo "<br> Vous avez gagné ! <br>";
-            $argent = $argent - $sommeMisee + ($sommeMisee * 2);
-        }
-        else{
-            echo "<br> Vous avez perdu ! <br>";
-            $argent = $argent - $sommeMisee;
-        }
-    }
-    if(isset($_POST['nombre'])){
-        $bool = tourRouletteNombre($sommeMisee);
-        if ($bool==1){
-            echo "<br> Vous avez gagné ! <br>";
-            $argent = $argent - $sommeMisee + ($sommeMisee * 35);
-        }
-        else{
-            echo "<br> Vous avez perdu ! <br>";
-            $argent = $argent - $sommeMisee;
-        }
+        $choixNb = $_POST['nombre']
+            if($_POST['choix']=='pair'){
+                $parite=0;
+            }else if($_POST['choix']=='impair'){
+                $parite=1;
+            }else{
+                echo "ERREUR";
+            }
+            
     }
     
-    $bool2 = perdrePartie($argent);
-    if ($bool2 == 1){
-        echo "vous n'avez plus de sous";
+    if($sommeMisee<$miseMax && $sommeMisee>0){
+        if(isset($_POST['Parite'])){
+            if (parite($parite)==1){
+                echo "<br> Vous avez gagné ! <br>";
+                $argent = $argent + $sommeMisee;
+            }
+            else{
+                echo "<br> Vous avez perdu ! <br>";
+                $argent = $argent - $sommeMisee;
+            }
+        }else if(isset($_POST['nombre'])){
+            if (nbr ($nombre)==1){
+                echo "<br> Vous avez gagné ! <br>";
+                $argent = $argent + ($sommeMisee * 34);
+            }
+            else{
+                echo "<br> Vous avez perdu ! <br>";
+                $argent = $argent - $sommeMisee;
+            }
+        }else{
+            echo "T'as pas cliqué gros";
+        }
+        if(perdrePartie($argent)){
+            echo "<br> VOUS ETES A SEC !!! Sale pauvre :O <br>";
+        }
     }
-                
-    echo $argent;
-    echo " €";   
 }          
 ?>    
         
@@ -147,8 +109,8 @@ if(isset($_POST['bouton'])){
        
     <div>
         <label for="miseParité ">Misez sur la parité</label>  <br> 
-        <label>Pair</label> <input type="radio" name= "choixPair" id="pair" /> 
-        <label>Impair</label> <input type="radio" name="choixImpair" id="impair" /> 
+        <label>Pair</label> <input type="radio" name= "choix" id="pair" /> 
+        <label>Impair</label> <input type="radio" name="choix" id="impair" /> 
     </div>
         
 
