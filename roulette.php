@@ -62,35 +62,35 @@ session_start(); #session >
             }else{
                 echo "ERREUR";
             }
-    }
+    
     
     if($sommeMisee<$miseMax && $sommeMisee>0){
         if(isset($_POST['Parite'])){
             if (parite($parite)==1){
                 echo "<br> Vous avez gagné ! <br>";
-                $argent = $_SESSION['argent'] + $sommeMisee;
+                $_SESSION['argent'] = $_SESSION['argent'] + $sommeMisee;
             }
             else{
                 echo "<br> Vous avez perdu ! <br>";
-                $argent = $_SESSION['argent'] - $sommeMisee;
+                $_SESSION['argent'] = $_SESSION['argent'] - $sommeMisee;
             }
         }else if(isset($_POST['nombre'])){
-            if (nbr ($nombre)==1){
+            if (nbr ($_POST['nombre'])==1){
                 echo "<br> Vous avez gagné ! <br>";
-                $argent = $argent + ($sommeMisee * 34);
+                $_SESSION['argent'] = $_SESSION['argent'] + ($sommeMisee * 34);
             }
             else{
                 echo "<br> Vous avez perdu ! <br>";
-                $argent = $argent - $sommeMisee;
+                $_SESSION['argent'] = $_SESSION['argent'] - $sommeMisee;
             }
         }else{
             echo "T'as pas cliqué gros";
         }
-        if(perdrePartie($argent)){
+        if(perdrePartie($_SESSION['argent'])){
             echo "<br> VOUS ETES A SEC !!! Sale pauvre :O <br>";
         }
     }
-          
+ }         
 ?>    
   <p>Bonjour mon gros <?php echo $_SESSION['nom'] ?>. Tu as <?php echo $_SESSION['argent']?> € de thune;</p> 
     <form action="/php_roulette/roulette.php" method="post">
