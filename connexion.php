@@ -13,7 +13,7 @@ if(isset($_GET['getdeco'])){
 
 $mdp = "123";
 $nom = "Test";
-$_SESSION['argent'] = 500;
+$_SESSION['argent']=500;
 
 #traite le formulaire de connexion
 if(isset($_POST['send'])){
@@ -66,6 +66,9 @@ if(isset($_POST['send'])){
         //verif si error != ""
         //echo...
     ?>
+      
+        
+        
         
 <form class="center" action="/php_roulette/connexion.php" method="post">
     <div class="aligner">

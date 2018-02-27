@@ -94,7 +94,7 @@ session_start(); #session >
     }
 }          
 ?>    
-        
+  <p>Bonjour mon gros <?php echo $_SESSION['nom'] ?></p>      
     <form action="/php_roulette/roulette.php" method="post">
     <div>
         <input type="text" name="mise" placeholder="Votre mise" min=1 max = 500/>
