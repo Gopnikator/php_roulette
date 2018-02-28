@@ -1,4 +1,4 @@
-// mettre session au départ<?php 
+<?php 
 session_start(); #session >
 ?>
 
@@ -17,11 +17,11 @@ session_start(); #session >
              
        
 <?php
-        echo $_SESSION['argent'] . " €";
 
         function parite ($parite){
             // selection d'un num random entre 1 et 36
             $num=rand(1.36);
+            echo "Le numéro tombé est ".$num;
             // comparaison avec la parité choisi
             if($num%2==$parite){
                 return true;
@@ -54,18 +54,27 @@ session_start(); #session >
     if(isset($_POST['button'])){
         $miseMax = $_SESSION['argent'];
         $sommeMisee = $_POST['mise'];
+        if(isset($_POST['choix'])){
+            $choix=$_POST['choix'];
+            echo $choix;
+        }
         $choixNb = $_POST['nombre'];
-            if($_POST['choix']=='pair'){
+        echo $choixNb;
+            if($_POST['choix']=="pair"){
                 $parite=0;
-            }else if($_POST['choix']=='impair'){
+                echo "Vous avez choisi ".$parite;
+            }else if($_POST['choix']=="impair"){
                 $parite=1;
+                echo "Vous avez choisi ".$parite;
             }else{
                 echo "ERREUR";
             }
     
     
     if($sommeMisee<$miseMax && $sommeMisee>0){
+        echo "pomme de terre";
         if(isset($_POST['Parite'])){
+            echo "patate";
             if (parite($parite)==1){
                 echo "<br> Vous avez gagné ! <br>";
                 $_SESSION['argent'] = $_SESSION['argent'] + $sommeMisee;
@@ -77,7 +86,7 @@ session_start(); #session >
         }else if(isset($_POST['nombre'])){
             if (nbr ($_POST['nombre'])==1){
                 echo "<br> Vous avez gagné ! <br>";
-                $_SESSION['argent'] = $_SESSION['argent'] + ($sommeMisee * 34);
+                $_SESSION['argent'] = $_SESSION['argent'] + ($sommeMisee * '34');
             }
             else{
                 echo "<br> Vous avez perdu ! <br>";
@@ -92,10 +101,10 @@ session_start(); #session >
     }
  }         
 ?>    
-  <p>Bonjour mon gros <?php echo $_SESSION['nom'] ?>. Tu as <?php echo $_SESSION['argent']?> € de thune;</p> 
+  <p>Bonjour mon gros <?php echo $_SESSION['nom'] ?>. Tu as <?php echo $_SESSION['argent']?> € de thune;</p> <br>
     <form action="/php_roulette/roulette.php" method="post">
     <div>
-        <input type="text" name="mise" placeholder="Votre mise" min=1 max = 500/>
+        <input type="number" name="mise" placeholder="Votre mise" min=1 max = 500/>
     </div>
         
     <div>
@@ -112,10 +121,15 @@ session_start(); #session >
     </div>
         
 
-    <div class="buttonJouer">
-        <input type="hidden" value="play" name="bouton">
-        <input type="submit"  value="Let's begin!" name = "button">
-    </div>    
+    <div class="buttonJouerNb">
+        <input type="hidden" value="play1" name="bouton1">
+        <input type="submit"  value="Nombre" name = "button1">
+    </div>
+        
+    <div class="buttonJouerParite">
+        <input type="hidden" value="play2" name="bouton2">
+        <input type="submit"  value="Parite" name = "button2">
+    </div>
         
     </form>  
         
