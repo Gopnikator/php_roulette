@@ -20,10 +20,13 @@ session_start(); #session >
 
         function parite ($parite){
             // selection d'un num random entre 1 et 36
-            $num=rand(1.36);
-            echo "Le numéro tombé est ".$num;
+            $num2=rand(1,36);
+            echo "Le numéro tombé est ".$num2;
+            $num2=$num2%2;
+            echo "  //  ";
+            echo $num2;
             // comparaison avec la parité choisi
-            if($num%2==$parite){
+            if($num2%2==$parite){
                 return true;
             }else{
                 return false;
@@ -33,6 +36,8 @@ session_start(); #session >
         function nbr ($nombre){
              // selection d'un num random entre 1 et 36
             $num = rand(1,36);
+            echo "Le numéro tombé est ".$num;
+            echo "  //  ";
             // comparaison avec le nombre choisi  
             if($nombre==$num){
                 return true;
@@ -56,37 +61,42 @@ session_start(); #session >
         $sommeMisee = $_POST['mise'];
         if(isset($_POST['choix'])){
             $choix=$_POST['choix'];
-            echo $choix;
-        }
-        $choixNb = $_POST['nombre'];
-        echo $choixNb;
+            echo $choix;?><br><?php
             if($_POST['choix']=="pair"){
                 $parite=0;
-                echo "Vous avez choisi ".$parite;
+                echo "Vous avez choisi pair";?><br><?php
             }else if($_POST['choix']=="impair"){
                 $parite=1;
-                echo "Vous avez choisi ".$parite;
+                echo "Vous avez choisi impair";?><br><?php
             }else{
                 echo "ERREUR";
             }
+        }
+        if(isset($_POST['nombre'])){
+            $choixNb = $_POST['nombre'];
+            echo $choixNb;?><br><?php
+        }
+            
     
     
     if($sommeMisee<$miseMax && $sommeMisee>0){
-        echo "pomme de terre";
-        if(isset($_POST['Parite'])){
-            echo "patate";
-            if (parite($parite)==1){
+        if($choixNb>0){
+            echo "<br> Vous avez choisi de miser sur le nombre ";
+            echo $choixNb;
+            echo " !<br>Les jeux sont faits<br>.<br>.<br>.<br>Rien ne va plus...<br>.<br>.<br>.<br>";
+            if (nbr ($_POST['nombre'])==1){
                 echo "<br> Vous avez gagné ! <br>";
-                $_SESSION['argent'] = $_SESSION['argent'] + $sommeMisee;
+                $_SESSION['argent'] = $_SESSION['argent'] + ($sommeMisee * '34');
             }
             else{
                 echo "<br> Vous avez perdu ! <br>";
                 $_SESSION['argent'] = $_SESSION['argent'] - $sommeMisee;
             }
-        }else if(isset($_POST['nombre'])){
-            if (nbr ($_POST['nombre'])==1){
+        }else if($parite<2){
+            echo "<br> Vous avez choisi de miser sur la parité !<br>Les jeux sont faits<br>.<br>.<br>.<br>Rien ne va plus...<br>.<br>.<br>.<br>";
+            if (parite($parite)==1){
                 echo "<br> Vous avez gagné ! <br>";
-                $_SESSION['argent'] = $_SESSION['argent'] + ($sommeMisee * '34');
+                $_SESSION['argent'] = $_SESSION['argent'] + $sommeMisee;
             }
             else{
                 echo "<br> Vous avez perdu ! <br>";
@@ -120,15 +130,9 @@ session_start(); #session >
         <label>Impair</label> <input type="radio" name="choix" id="impair" value="impair"/> 
     </div>
         
-
-    <div class="buttonJouerNb">
-        <input type="hidden" value="play1" name="bouton1">
-        <input type="submit"  value="Nombre" name = "button1">
-    </div>
-        
-    <div class="buttonJouerParite">
-        <input type="hidden" value="play2" name="bouton2">
-        <input type="submit"  value="Parite" name = "button2">
+    <div class="buttonJouer">
+        <input type="hidden" value="play" name="bouton">
+        <input type="submit"  value="Jouer" name = "button">
     </div>
         
     </form>  
