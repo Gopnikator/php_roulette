@@ -23,3 +23,28 @@
 .aligner{
     display: flex;
 }
+
+.ligne{
+    color: purple;
+    text-align: center;
+}
+
+.choixMise{
+    
+}
+
+input#nombre:checked ~ td#choixNombre{
+    display:none;
+}
+
+input#nombre:checked ~ td#choixParite{
+    display:block;
+}
+
+input#parite:checked ~ td#choixParite{
+    display:none;
+}
+
+input#parite:checked ~ td#choixNombre{
+    display:block;
+}
