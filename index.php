@@ -1,18 +1,17 @@
 <?php 
 session_start(); #session
-//$temps = 365*24*3600; // durée de vie du cookie de 1 an
-//setcookie("nom",$_POST['name'],time()+$expire);
-//setcookie("mdp",$_POST['passwrd'],time()+$expire);
-//setcookie("thune",$_POST['money'],time()+$expire);
 
-require once("https://iutdoua-web.univ-lyon1.fr/~p1702775/php_roulette/bdd.php");
-$bdd= new BaseDonnees();
-$bdd->start();
+$host='localhost';
+ $dbname = 'Player';
+ $username = 'p1702775';
+ $psw = '308410';
 
+require_once('bdd.php');
+$BDD = new BaseDonnees($host, $dbname, $username, $psw);
+$BDD->connectDb();
 
 #traitement php
 $error=";";
-
 
 #traitement de la déco
 if(isset($_GET['getdeco'])){
@@ -29,8 +28,8 @@ if(isset($_POST['send'])){
     ### vérifie données
     if(isset($_POST['name']) && ($_POST['name'] != '' )/*username existe*/){
        if(isset($_POST['passwrd']) && ($_POST['passwrd'] != '' )/*mdp existe*/){
-            if ($bdd -> connexion($_POST['name'],$_POST['passwrd'])){
-                header("Location: https://iutdoua-web.univ-lyon1.fr/~p1702775/php_roulette/roulette.php");
+            if ($BDD -> connexion($_POST['name'],$_POST['passwrd'])){
+                header("Location: roulette.php");
             }
         } else {
             $error = "mdp NOK";} 
@@ -39,14 +38,9 @@ if(isset($_POST['send'])){
     }  
 }
 
-
 ?>
 
- 
-
 <DOCTYPE html>
-    
-    
     
 <html>
     <head>
@@ -68,7 +62,7 @@ if(isset($_POST['send'])){
         echo "Une erreur est apparue ";
     ?>       
         
-<form class="center" action="https://iutdoua-web.univ-lyon1.fr/~p1702775/php_roulette/index.php" method="post">
+<form class="center" action="index.php" method="post">
     <div class="aligner">
         <label class="sr-only" for="inlineFormInputName2"></label>
         <input type="text" class="form-control mb-2 mr-sm-2" name="name" placeholder="name"/>
@@ -95,7 +89,7 @@ if(isset($_POST['send'])){
 </div>
     
         
-<p class="register"><a href="https://iutdoua-web.univ-lyon1.fr/~p1702775/php_roulette/inscription.php"> OU INSCRIVEZ-VOUS</a></p>
+<p class="register"><a href="inscription.php"> OU INSCRIVEZ-VOUS</a></p>
     </body>
 
 

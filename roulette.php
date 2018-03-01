@@ -1,7 +1,7 @@
 <?php 
 session_start(); #session >
 
-require once("https://iutdoua-web.univ-lyon1.fr/~p1702775/php_roulette/bdd.php");
+require_once("bdd.php");
 $bdd = new BaseDonnees();
 $bdd->start();
 
@@ -119,7 +119,7 @@ $error="";
  }         
 ?>    
   <p class= "phrase">Bonjour <?php echo $_SESSION['name'] ?>. Tu as <?php echo $_SESSION['money']?> € de thune;</p> <br>
-    <form class=center action="https://iutdoua-web.univ-lyon1.fr/~p1702775/php_roulette/roulette.php" method="post">
+    <form class=center action="roulette.php" method="post">
     <div >    
         <div>
             <input class="form-group" type="number" name="mise" placeholder="Votre mise" min=1 max = 500/><br><br>
@@ -143,7 +143,7 @@ $error="";
         </div> 
     </form>  
         
-    <a class="aDroite"  href="https://iutdoua-web.univ-lyon1.fr/~p1702775/php_roulette/connexion.php?getdeco">Se déconnecter</a>
+    <a class="aDroite"  href="connexion.php?getdeco">Se déconnecter</a>
         
     
     

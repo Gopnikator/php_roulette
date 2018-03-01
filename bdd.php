@@ -1,11 +1,13 @@
 <?php
 
-class BaseDonnees {
+class BaseDonnees{
     private $BDD;
     private $host='localhost';
     private $dbname = 'Player';
     private $username = 'p1702775';
     private $psw = '308410';
+    //private $username = 'p1702775';
+    //private $psw = '308410';
     
     public function __construct($host, $dbname, $username, $psw){
         $this->host=$host;
@@ -14,62 +16,73 @@ class BaseDonnees {
         $this->psw=$psw;
     }
     
-    public function getBDD{
+    public function getBDD(){
         return($this->BDD);
     }
-    public function getHost{
+    public function getHost(){
         return($this->host);
     }
-    public function getDbname{
+    public function getDbname(){
         return($this->dbname);
     }
-    public function getUsername{
+    public function getUsername(){
         return($this->username);
     }
-    public function getPsw{
+    public function getPsw(){
         return($this->psw);
     }
     
     
-    public function setBDD{
-        $this->BDD->$BDD
+    public function setBDD($BDD){
+        $this->BDD=$BDD;
     }
-    public function setHost{
-        $this->host->$host
+    public function setHost($host){
+        $this->host=$host;
     }
-    public function setDbname{
-        $this->dbname->$dbname
+    public function setDbname($bdname){
+        $this->dbname=$dbname;
     }
-    public function setUsername{
-        $this->username->$username
+    public function setUsername($username){
+        $this->username=$username;
     }
-    public function setPsw{
-        $this->psw->$psw
+    public function setPsw($psw){
+        $this->psw=$psw;
     }
     
     
-    
+    function connectDb(){
+       /* $host = 'localhost'; // ou sql.hebergeur.com
+        $user = 'root';      // ou login
+        $pwd = '';      // ou xxxxxx
+        $db = 'nom_bdd';*/
+        try {
+        $this->BDD = new PDO('mysql:host='.$this->host.';dbname='.$this->dbname.';charset=utf8', $this->username, $this->psw);
+        } catch (Exception $e) {
+        exit('Erreur : '.$e->getMessage());
+        }
+    }
+    /*
     public function start() {    
         try
         {
-            $this->$BDD = new PDO('mysql:host=localhost;dbname=test;charset=utf8', $this->username, $this->psw);
+            $this->BDD = new PDO('mysql:host=localhost;dbname=test;charset=utf8', $this->username, $this->psw);
         }
         catch(Exception $e)
         {
                 die('Error : '.$e->getMessage());
         }
-    }
+    }*/
 
     public function connexion($name, $passwrd){
             $requete='SELECT passwrd FROM Player where name = ?';
-            $reponse==$this->BDD->prepare($requete);
+            $reponse=$this->BDD->prepare($requete);
             $reponse->execute(array($name)); 
             $data = $reponse->fetch();
             return $reponse['passwrd']==$passwrd;
     }
 
     public function addPlayer ($name, $passwrd){
-        $requete = $this->$BDD->prepare('INSERT INTO Player(name, passwrd, money) VALUES(:name, :passwrd, :money)');
+        $requete = $this->BDD->prepare('INSERT INTO Player(name, passwrd, money) VALUES(:name, :passwrd, :money)');
         $requete->execute(array(
             'name' => $name,
             'passwrd' => $passwrd,
@@ -78,7 +91,7 @@ class BaseDonnees {
     }
 
     public function updateMoney($id, $name){
-            $requete = $this->$BDD->prepare('UPDATE Player SET money = :newMoney WHERE player = :player_name');
+            $requete = $this->BDD->prepare('UPDATE Player SET money = :newMoney WHERE player = :player_name');
             $requete->execute(array(
                'newMoney' => $newMoney,
                'player_name' => $name,
@@ -86,7 +99,7 @@ class BaseDonnees {
     }
 
     public function addGame($player, $bet, $profit){
-            $requete = $this->$BDD->prepare('INSERT INTO Game(player, date, bet, profit) VALUES(:player, NOW(), :bet, :profit)');
+            $requete = $this->BDD->prepare('INSERT INTO Game(player, date, bet, profit) VALUES(:player, NOW(), :bet, :profit)');
             $requete->execute(array(
             'player' => $player,
             'bet' => $bet,
@@ -94,3 +107,4 @@ class BaseDonnees {
         ));
     }
 }
+?>

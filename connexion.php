@@ -24,7 +24,7 @@ if(isset($_POST['send'])){
                 if($_POST['mdp']==$mdp){
             echo "lol3";
                     $_SESSION['nom']=$_POST['nom'];
-                    header("Location: /php_roulette/roulette.php");
+                    header("Location: roulette.php");
                     } else {
                         $error = "mdp NOK";} 
                 } else {
@@ -68,7 +68,7 @@ if(isset($_POST['send'])){
         
         
         
-<form class="center" action="/php_roulette/connexion.php" method="post">
+<form class="center" action="connexion.php" method="post">
     <div class="aligner">
         <label class="sr-only" for="inlineFormInputName2"></label>
         <input type="text" class="form-control mb-2 mr-sm-2" id="exampleInputEmail1" aria-describedby="emailHelp" name="nom" placeholder="nom"/>
@@ -95,7 +95,7 @@ if(isset($_POST['send'])){
 </div>
     
         
-<p class="register"><a href="/php_roulette/inscription.php"> OU INSCRIVEZ-VOUS</a></p>
+<p class="register"><a href="inscription.php"> OU INSCRIVEZ-VOUS</a></p>
     </body>
 
 
