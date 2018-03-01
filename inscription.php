@@ -1,3 +1,22 @@
+<?php
+    session_start();
+    require once("https://iutdoua-web.univ-lyon1.fr/~p1702775/php_roulette/bdd.php");
+
+    $nvlBDD = new bdd('localhost','Player','p1702775','308410');
+    $nvlBDD->start();
+
+    if (isset($_POST['envoyer'])){
+        if ($_POST['name'] != ""){
+            if ($_POST['passwrd'] != ""){
+                $nvlBDD->addPlayer($_POST['name'], $_POST['passwrd']);
+                header("Location: https://iutdoua-web.univ-lyon1.fr/~p1702775/php_roulette/index.php");
+            }
+        }
+    }
+
+?>
+
+
 <DOCTYPE html>
 <html>
     <head>
@@ -9,18 +28,19 @@
     
     <body>
         
-    <h1 class="titre-index">Inscrivez-vous au jeu de la roulette</h1>
+    <h1 class="titre-index margin-btm">Inscrivez-vous au jeu de la roulette</h1>
     
-        <form action="/php_roulette/connexion.php" method="post">
-        <div>
-           <input type="text" id="nom" placeholder="nom"/>
-        </div>
-        <div>
-            <input type="password" id="mdp" placeholder = "mdp"/>
-        </div>
-        
-        <div class="buttonSend">
-            <button type="submit">s'inscrire</button>
+        <form class="center" action="https://iutdoua-web.univ-lyon1.fr/~p1702775/php_roulette/connexion.php" method="post">
+           <div class="aligner margin-btm reg">
+                <div>
+                   <input class="form-control mb-2 mr-sm-2" type="text" name="name" placeholder="nom"/>
+                </div>
+                <div>
+                    <input class="form-control mb-2 mr-sm-2" type="password" name="passwrd" placeholder = "mdp"/>
+                </div>
+            </div> 
+        <div class="center margin-left" >
+            <button type="submit" name="envoyer">s'inscrire</button>
         </div>
             
         

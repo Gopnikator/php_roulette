@@ -1,3 +1,7 @@
+body{
+    background-color: beige;
+}
+
 .form-inline {
     margin: auto;
     width: 50%;
@@ -13,6 +17,8 @@
 .titre-index{
     text-align: center;
     font-weight: bold;
+    margin-top: 3%;
+    color: brown;
 }
 
 .center{
@@ -20,6 +26,51 @@
     width: 50%;
 }
 
+.aDroite{
+    float:right;
+    margin-right: 150px;
+}
+
 .aligner{
     display: flex;
 }
+
+.margin-btm{
+    margin-bottom: 100px;
+}
+
+.margin-left{
+   padding-left: 100px;
+}
+
+.paparite input{
+    margin-right: 50px;
+}
+
+#decaDroite{
+    margin-right: 50px;
+}
+
+.reg{
+    margin-left: 80px;
+}
+
+#img_roulette{
+    height: 150px;
+    width: 150px;
+    float:right;
+    margin-right: 150px;
+    margin-left: 300px;
+}
+
+.phrase{
+    margin-top: 50px;
+    font-size: 20px;
+    text-align: center;
+    padding-left: 250px;
+}
+
+.hauteur{
+    height: 50px;
+}
+

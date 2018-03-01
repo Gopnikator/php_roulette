@@ -1,6 +1,6 @@
 <?php 
-session_start(); #session
-//setcookie(/*...*/);
+//session_start(); #session
+//setcookie()
 #traitement php
 $error=";";
 
@@ -11,9 +11,7 @@ if(isset($_GET['getdeco'])){
     unset($_SESSION['argent']);
 }
 
-$mdp = "123";
-$nom = "Test";
-$_SESSION['argent']="500";
+
 
 #traite le formulaire de connexion
 if(isset($_POST['send'])){

@@ -1,5 +1,12 @@
 <?php 
 session_start(); #session >
+
+require once("https://iutdoua-web.univ-lyon1.fr/~p1702775/php_roulette/bdd.php");
+$bdd = new BaseDonnees();
+$bdd->start();
+
+$error="";
+
 ?>
 
 <DOCTYPE html>
@@ -13,7 +20,7 @@ session_start(); #session >
     
     <body>
         
-    <h1 class="titre-index">Le jeu de la roulette</h1>
+    <h1 class="titre-index">Le jeu de la roulette </h1> <img id="img_roulette" src="roulette.gif" alt="Roulette"> 
              
        
 <?php
@@ -47,8 +54,8 @@ session_start(); #session >
             }
         }                
         
-        function perdrePartie ($argent){
-            if ($argent == 0){
+        function perdrePartie ($money){
+            if ($money == 0){
                 return true;
             }else{
                 return false;
@@ -57,7 +64,7 @@ session_start(); #session >
         
     // Si le bouton jouer est pressé alors
     if(isset($_POST['button'])){
-        $miseMax = $_SESSION['argent'];
+        $miseMax = $_SESSION['money'];
         $sommeMisee = $_POST['mise'];
         if(isset($_POST['choix'])){
             $choix=$_POST['choix'];
@@ -86,58 +93,59 @@ session_start(); #session >
             echo " !<br>Les jeux sont faits<br>.<br>.<br>.<br>Rien ne va plus...<br>.<br>.<br>.<br>";
             if (nbr ($_POST['nombre'])==1){
                 echo "<br> Vous avez gagné ! <br>";
-                $_SESSION['argent'] = $_SESSION['argent'] + ($sommeMisee * '34');
+                $_SESSION['money'] = $_SESSION['money'] + ($sommeMisee * '34');
             }
             else{
                 echo "<br> Vous avez perdu ! <br>";
-                $_SESSION['argent'] = $_SESSION['argent'] - $sommeMisee;
+                $_SESSION['money'] = $_SESSION['money'] - $sommeMisee;
             }
         }else if($parite<2){
             echo "<br> Vous avez choisi de miser sur la parité !<br>Les jeux sont faits<br>.<br>.<br>.<br>Rien ne va plus...<br>.<br>.<br>.<br>";
             if (parite($parite)==1){
                 echo "<br> Vous avez gagné ! <br>";
-                $_SESSION['argent'] = $_SESSION['argent'] + $sommeMisee;
+                $_SESSION['money'] = $_SESSION['money'] + $sommeMisee;
             }
             else{
                 echo "<br> Vous avez perdu ! <br>";
-                $_SESSION['argent'] = $_SESSION['argent'] - $sommeMisee;
+                $_SESSION['money'] = $_SESSION['money'] - $sommeMisee;
             }
         }else{
             echo "T'as pas cliqué gros";
         }
-        if(perdrePartie($_SESSION['argent'])){
-            echo "<br> VOUS ETES A SEC !!! Sale pauvre :O <br>";
+        if(perdrePartie($_SESSION['money'])){
+            echo "<br>  VOUS ETES A SEC !!! Sale pauvre :O <br>";
         }
     }
  }         
 ?>    
-  <p>Bonjour mon gros <?php echo $_SESSION['nom'] ?>. Tu as <?php echo $_SESSION['argent']?> € de thune;</p> <br>
-    <form action="/php_roulette/roulette.php" method="post">
-    <div>
-        <input type="number" name="mise" placeholder="Votre mise" min=1 max = 500/>
-    </div>
-        
-    <div>
-        <label for="miseNombre">Misez sur un nombre</label>
-        <input type="number" name = "nombre" min = "1" max = "36"/>
-    </div>
-    
-    <div> OU </div>
-       
-    <div>
-        <label for="miseParité ">Misez sur la parité</label>  <br> 
-        <label>Pair</label> <input type="radio" name= "choix" id="pair" value="pair"/> 
-        <label>Impair</label> <input type="radio" name="choix" id="impair" value="impair"/> 
-    </div>
-        
-    <div class="buttonJouer">
-        <input type="hidden" value="play" name="bouton">
+  <p class= "phrase">Bonjour <?php echo $_SESSION['name'] ?>. Tu as <?php echo $_SESSION['money']?> € de thune;</p> <br>
+    <form class=center action="https://iutdoua-web.univ-lyon1.fr/~p1702775/php_roulette/roulette.php" method="post">
+    <div >    
+        <div>
+            <input class="form-group" type="number" name="mise" placeholder="Votre mise" min=1 max = 500/><br><br>
+        </div>
+
+        <div>
+            <label for="miseNombre">Misez sur un nombre</label>
+            <input class="form-group" type="number" name = "nombre" min = "1" max = "36"/><br><br> 
+        </div>
+
+        <div> OU </div>
+
+        <div class="aligner paparite">
+            <label id="decaDroite" for="miseParité ">Misez sur la parité</label>  <br> 
+            <label>Pair</label> <input type="radio" name= "choix" id="pair" value="pair"/> 
+            <label>Impair</label> <input type="radio" name="choix" id="impair" value="impair"/> 
+            <input type="hidden" value="play" name="bouton">
+        </div>
         <input type="submit"  value="Jouer" name = "button">
-    </div>
-        
+    
+        </div> 
     </form>  
         
-    <a href="/php_roulette/connexion.php?getdeco">Se déconnecter</a>
+    <a class="aDroite"  href="https://iutdoua-web.univ-lyon1.fr/~p1702775/php_roulette/connexion.php?getdeco">Se déconnecter</a>
+        
+    
     
         
         
