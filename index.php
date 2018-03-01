@@ -2,7 +2,7 @@
 session_start(); #session
 
 $host='localhost';
- $dbname = 'Player';
+ $dbname = 'p1702775';
  $username = 'p1702775';
  $psw = '308410';
 

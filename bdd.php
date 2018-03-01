@@ -3,7 +3,7 @@
 class BaseDonnees{
     private $BDD;
     private $host='localhost';
-    private $dbname = 'Player';
+    private $dbname = 'p1702775';
     private $username = 'p1702775';
     private $psw = '308410';
     //private $username = 'p1702775';
