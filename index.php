@@ -2,9 +2,9 @@
 session_start(); #session
 
 $host='localhost';
- $dbname = 'p1702775';
- $username = 'p1702775';
- $psw = '308410';
+ $dbname = 'p1711853';
+ $username = 'p1711853';
+ $psw = '302562';
 
 require_once('bdd.php');
 $BDD = new BaseDonnees($host, $dbname, $username, $psw);
