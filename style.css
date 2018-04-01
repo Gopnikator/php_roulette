@@ -74,3 +74,9 @@ body{
     height: 50px;
 }
 
+.textRoulette{
+    margin-top: 50px;
+    font-size: 20px;
+    text-align: center;
+    padding-left: 200px;
+}
